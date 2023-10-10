@@ -1,0 +1,61 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+
+int add(int x, int y);
+float divide(float_t x, float_t y);
+
+int main() 
+{
+    char string[1024];
+    char *array;
+    int i = 0, x, y;
+    char *string_tokenized;
+    char operator;
+    int z;
+    float z2;
+    array = (char *)malloc(sizeof(char));
+    scanf("%s", string);
+    string_tokenized = (char *)malloc(sizeof(char));
+    string_tokenized = strtok(string, " ");
+    while (string_tokenized != NULL)
+    {
+        strcpy(&array[i], string_tokenized);
+        string_tokenized = strtok(NULL, " "); //get next token
+        i++;
+    }
+    x = array[0];
+    y = array[2];
+    operator = array[1];
+    
+    if (operator == '+')
+    {
+        z = add(x, y);
+        printf ("%d", z);
+    }   
+    else if (operator == '/')
+    {
+        if (y == 0)
+            printf("Error");
+        else
+        {
+            z2 = divide(x, y);
+            printf ("%f", z2);
+        }
+    }
+}
+int add(int x, int y)
+{
+    int result;
+    result = x + y;
+    return (result);
+}
+float divide(float_t x, float_t y)
+{
+    float result;
+    result = x / y;
+    return (result);
+}
